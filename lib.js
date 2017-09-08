@@ -55,7 +55,7 @@ window.BubblerJS = function(tag_id, params){
 
     /* launch bubbles.js */
     if(canvas != null){
-        BubblerDom.push(new BJS(tag_id, params));
+        BubblerDom.push(new BJS( this.tag_id, params ));
     }
 };
 
