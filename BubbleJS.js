@@ -156,14 +156,16 @@ var BJS = function( tag_id, settings ){
         for( var i = 0 ; i < this.final_configuration.settings.number.value ; i++ )
         {
             var radius = this.get_size();
-            var max_size = BJS.canvas.settings.size.anim.size_max ;
-            var x = Math.floor( Math.random() * ( BJS.canvas.el.width - max_size * 2 ) + max_size );
-            var y = Math.floor( Math.random() * ( BJS.canvas.el.height - max_size * 2 ) + max_size );
-            console.log( x , y );
-            var dx = ( Math.random() - 0.5 ) * 4 ;
-            var dy = ( Math.random() - 0.5 ) * 4 ;
 
-            this.bubbles.push( new Bubble( x, y, 5, 5, radius , this.get_color(), .5 , BJS.canvas.settings.size.anim.speed ) ) ;
+            var max_size = BJS.canvas.settings.size.anim.size_max ;
+            // make sure bubble space do not go out of the frame
+            var x = Math.floor( Math.random() * ( BJS.canvas.el.width - max_size * 2 ) + radius );
+            var y = Math.floor( Math.random() * ( BJS.canvas.el.height - max_size * 2 ) + radius );
+
+            var dx = BJS.canvas.settings.move.speed ;
+            var dy = BJS.canvas.settings.move.speed ;
+
+            this.bubbles.push( new Bubble( x, y, dx, dy, radius , this.get_color(), .5 , BJS.canvas.settings.size.anim.speed ) ) ;
         }
     };
 
@@ -196,6 +198,7 @@ var BJS = function( tag_id, settings ){
         }
         return BJS.canvas.size ;
     };
+
 
     this.start = function(){
         // merge user config with default config
@@ -264,7 +267,27 @@ Bubble.prototype.update_radius = function(){
     }
 }
 
+Bubble.prototype.update_position = function(){
+    if( BJS.canvas.settings.move.enable == true ){
+        if(
+            this.x + this.radius >= BJS.canvas.el.width || this.x - this.radius <= 0
+        ){
+            this.dx = -this.dx;
+        }
+
+        if(
+            this.y + this.radius >= BJS.canvas.el.height || this.y - this.radius <= 0
+        ){
+            this.dy = -this.dy;
+        }
+
+        this.x += this.dx;
+        this.y += this.dy;
+    }
+}
+
 Bubble.prototype.update = function(){
+    this.update_position();
     this.update_radius();
     this.draw();
 };
