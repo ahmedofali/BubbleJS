@@ -102,7 +102,8 @@ var BJS = function( tag_id, settings ){
                     "anim": {
                         "enable": false,
                         "speed": 40,
-                        "size_min": 0.1
+                        "size_min": 0.1,
+                        "size_max": 20
                     }
                 },
                 "line_linked": {
@@ -155,12 +156,14 @@ var BJS = function( tag_id, settings ){
         for( var i = 0 ; i < this.final_configuration.settings.number.value ; i++ )
         {
             var radius = this.get_size();
-            var x = Math.random() * ( BJS.canvas.el.width - radius * 2 ) + radius ;
-            var y = Math.random() * ( BJS.canvas.el.height - radius * 2 ) + radius ;
+            var max_size = BJS.canvas.settings.size.anim.size_max ;
+            var x = Math.floor( Math.random() * ( BJS.canvas.el.width - max_size * 2 ) + max_size );
+            var y = Math.floor( Math.random() * ( BJS.canvas.el.height - max_size * 2 ) + max_size );
+            console.log( x , y );
             var dx = ( Math.random() - 0.5 ) * 4 ;
             var dy = ( Math.random() - 0.5 ) * 4 ;
 
-            this.bubbles.push( new Bubble( x, y, 5, 5, radius , 20, this.get_color(), .5) ) ;
+            this.bubbles.push( new Bubble( x, y, 5, 5, radius , this.get_color(), .5 , BJS.canvas.settings.size.anim.speed ) ) ;
         }
     };
 
@@ -189,7 +192,7 @@ var BJS = function( tag_id, settings ){
 
     this.get_size = function(){
         if( BJS.canvas.size == null ){
-            return ( Math.random() * 20 ) + 1  ;
+            return Math.floor( ( Math.random() * BJS.canvas.settings.size.anim.size_min ) + BJS.canvas.settings.size.anim.size_min ) ;
         }
         return BJS.canvas.size ;
     };
@@ -199,11 +202,9 @@ var BJS = function( tag_id, settings ){
         this.final_configuration = this.Helpers.deepExtend( this.get_default_settings() , this.settings ) ;
 
         BJS.canvas = {};
-
         BJS.canvas.el = document.querySelector('#'+tag_id+' > .bubbles-js-canvas-el');
-
         BJS.canvas.context = BJS.canvas.el.getContext("2d");
-
+        BJS.canvas.settings = this.final_configuration.settings;
         BJS.canvas.colors = this.final_configuration.settings.color.value ;
 
         this.set_size( this.final_configuration.settings.size );
@@ -233,16 +234,15 @@ var BJS = function( tag_id, settings ){
  * @param opacity
  * @constructor
  */
-var Bubble = function( x, y, dx, dy, radius, minRadius, color, opacity ){
+var Bubble = function( x, y, dx, dy, radius, color, opacity ,size_speed ){
     this.x = x ;
     this.y = y ;
     this.dx = dx ;
     this.dy = dy ;
     this.radius = radius ;
-    this.minRadius = minRadius ;
     this.color = color ;
     this.opacity = opacity ;
-
+    this.size_speed = size_speed;
 
 };
 
@@ -254,8 +254,18 @@ Bubble.prototype.draw = function(){
     BJS.canvas.context.fill();
 };
 
-Bubble.prototype.update = function(){
+Bubble.prototype.update_radius = function(){
+    if( BJS.canvas.settings.size.anim.enable == true ){
+        if( this.radius > BJS.canvas.settings.size.anim.size_max || this.radius < BJS.canvas.settings.size.anim.size_min ){
+            this.size_speed = -this.size_speed ;
+        }
 
+        this.radius += this.size_speed ;
+    }
+}
+
+Bubble.prototype.update = function(){
+    this.update_radius();
     this.draw();
 };
 
