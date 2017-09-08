@@ -61,5 +61,5 @@ window.BubblerJS = function(tag_id, params){
 
 
 var BJS = function( tag_id, settings ){
-    
+
 }
