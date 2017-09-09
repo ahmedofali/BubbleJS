@@ -1,0 +1,28 @@
+{
+  "name": "bubblejs_docs",
+  "version": "1.0.0",
+  "description": "Bubblejs Docs site",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmedofali/BubbleJS.git"
+  },
+  "keywords": [
+    "bubblejs",
+    "canvas",
+    "html5",
+    "javascript"
+  ],
+  "author": "Ahmed Ali <dev.ahmed.abbas@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmedofali/BubbleJS/issues"
+  },
+  "homepage": "https://github.com/ahmedofali/BubbleJS#readme",
+  "devDependencies": {
+    "node-sass": "^4.5.3"
+  }
+}
