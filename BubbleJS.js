@@ -87,15 +87,6 @@ var BJS = function( tag_id, settings ){
                 "color": {
                     "value": "#ffffff"
                 },
-                "opacity": {
-                    "value": 0.06313181133058181,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1
-                    }
-                },
                 "size": {
                     "value": 11.83721462448409,
                     "random": true,
@@ -106,20 +97,14 @@ var BJS = function( tag_id, settings ){
                         "size_max": 20
                     }
                 },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#ffffff",
-                    "opacity": 0.4,
-                    "width": 1
-                },
                 "move": {
                     "enable": true,
-                    "speed": 6
+                    "speed_min": 0.5,
+                    "speed_max": 5
                 }
             }
         };
-    }
+    };
 
     /**
      * Inject Helpers
@@ -159,11 +144,12 @@ var BJS = function( tag_id, settings ){
 
             var max_size = BJS.canvas.settings.size.anim.size_max ;
             // make sure bubble space do not go out of the frame
-            var x = Math.floor( Math.random() * ( BJS.canvas.el.width - max_size * 2 ) + radius );
-            var y = Math.floor( Math.random() * ( BJS.canvas.el.height - max_size * 2 ) + radius );
+            var x = Math.random() * ( BJS.canvas.el.width - radius * 2 ) + radius;
+            var y = Math.random() * ( BJS.canvas.el.height - radius * 2 ) + radius;
 
-            var dx = BJS.canvas.settings.move.speed ;
-            var dy = BJS.canvas.settings.move.speed ;
+            // velocity settings
+            var dx = this.Helpers.get_random_number( BJS.canvas.settings.move.speed_min , BJS.canvas.settings.move.speed_max ) ;
+            var dy = this.Helpers.get_random_number( BJS.canvas.settings.move.speed_min , BJS.canvas.settings.move.speed_max ) ;
 
             this.bubbles.push( new Bubble( x, y, dx, dy, radius , this.get_color(), .5 , BJS.canvas.settings.size.anim.speed ) ) ;
         }
@@ -311,4 +297,7 @@ var Helpers = function(){
         return destination;
     };
 
+    this.get_random_number = function ( min , max ){
+        return Math.floor( Math.random() * ( max - min ) + min ) ;
+    }
 };

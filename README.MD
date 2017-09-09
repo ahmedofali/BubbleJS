@@ -4,6 +4,11 @@
 
 Load bubbles.js and configure the particles:
 
+**TODO**
+- Adding Opacity and Animation for It
+- Adding Linked Lines between Bubbles 
+- Adding Event Listeners ["resize","mouse_move","click"]
+ 
 **index.html**
 ```html
 <div id="bubbler-js"></div>
@@ -20,16 +25,7 @@ Load bubbles.js and configure the particles:
     },
     "color": {
       "value": "#ffffff"
-    },
-    "opacity": {
-      "value": 0.5,
-      "random": false,
-      "anim": {
-        "enable": false,
-        "speed": 1,
-        "opacity_min": 0.1
-      }
-    },
+    }
     "size": {
       "value": 10,
       "random": true,
@@ -38,13 +34,6 @@ Load bubbles.js and configure the particles:
         "speed": 80,
         "size_min": 0.1
       }
-    },
-    "line_linked": {
-      "enable": true,
-      "distance": 300,
-      "color": "#ffffff",
-      "opacity": 0.4,
-      "width": 2
     },
     "move": {
       "enable": true,
