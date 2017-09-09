@@ -11,6 +11,9 @@ Load bubbles.js and configure the particles:
  
 ### `CodePen Demo`
  https://codepen.io/ahmed-abbas/pen/JygYXE
+ 
+### `Docs`
+ https://ahmedofali.github.io/BubbleJS/
 
  
 **index.html**
