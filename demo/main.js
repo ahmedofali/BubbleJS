@@ -4,7 +4,7 @@ BubblerJS("bubbler-js", {
             "value": 100,
         },
         "color": {
-            "value": [ "#225378" , "#1695A3" , "#ACF0F2" , "#F3FFE2" , "#EB7F00" ]
+            "value": [ "#225378" , "#1695A3" , "#ACF0F2" , "#F3FFE2" , "#EB7F00" ,"#3B4A4F" ,"#5D85A8","#5F94C6"]
         },
         "size": {
             "value": 11.83721462448409,
