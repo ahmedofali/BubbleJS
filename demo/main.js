@@ -10,7 +10,7 @@ BubblerJS("bubbler-js", {
             "value": 11.83721462448409,
             "random": true,
             "anim": {
-                "enable": false,
+                "enable": true,
                 "speed": .1,
                 "size_min": 5 ,
                 "size_max": 15,
