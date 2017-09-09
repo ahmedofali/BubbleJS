@@ -4,10 +4,14 @@
 
 Load bubbles.js and configure the particles:
 
-**TODO**
+### `TODO`
 - Adding Opacity and Animation for It
 - Adding Linked Lines between Bubbles 
 - Adding Event Listeners ["resize","mouse_move","click"]
+ 
+### `CodePen Demo`
+ https://codepen.io/ahmed-abbas/pen/JygYXE
+
  
 **index.html**
 ```html
