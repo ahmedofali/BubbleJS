@@ -1,44 +1,51 @@
-.button-main{
-    color: #fff;
-    background-color: #225378;
-    border-color: #225378;
-    transition: .5s;
-}
-
-.button-main:hover{
-    color: #225378 ;
-    background-color: #FFF;
-}
+$main_color : #225378 ;
+$secondary_color : #EB7F00;
 
 .hero{
     background: aliceblue;
     padding: 22rem 0;
     height: 300px;
     opacity: 0.99;
-    border-bottom: 10px solid #225378;
-}
+    border-bottom: 10px solid $main_color;
 
-.hero .link{
-    color: #225378;
-    text-decoration: none;
-}
+    .container{
+        z-index: 2;
+    }
 
-.hero > .container{
-    z-index: 2;
-}
+    canvas{
+        position:fixed;
+        top:0;
+        z-index: 1;
+        opacity: .2;
+    }
 
-.hero-desc{
-    font-family: serif;
-}
-.hero-heading{
-    font-family: serif;
-    color: #EB7F00;
-}
+    h1,h2,h3,h4,h5,h6{
+        font-family: serif;
+    }
 
-canvas{
-    position:fixed;
-    top:0;
-    z-index: 1;
-    opacity: .2;
-}
 
+    .hero-heading{
+        color: $secondary_color;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    a.link{
+        color: $main_color;
+    }
+
+    a.button-main{
+        color: #fff;
+        background-color: $secondary_color;
+        border-color: $secondary_color;
+        transition: .5s;
+    }
+
+    a.button-main:hover{
+        color: $main_color ;
+        background-color: #FFF;
+    }
+
+}
